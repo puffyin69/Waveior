@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Outfit, Poppins } from "next/font/google";
 import {
   Navbar,
   NavBody,
@@ -11,6 +12,19 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import Image from "next/image";
+
+// Initialize fonts at module scope
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
+});
 
 const Nav = () => {
   const navItems = [
@@ -34,12 +48,14 @@ const Nav = () => {
       <Navbar>
         {/* Desktop navbar  */}
         <NavBody className="hidden lg:flex justify-between items-center w-full">
-          <NavbarLogo />
+          <NavbarLogo className={`${poppins.className} text-xl font-semibold`}>
+            Wearvio
+          </NavbarLogo>
           <div className="flex items-center">
-            <NavItems items={navItems} className="text-sm" />
+            <NavItems items={navItems} className={`text-sm ${outfit.className}`} />
           </div>
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Explore</NavbarButton>
+            <Image src="/cart.png" alt="cart" width={22} height={22} />
             <NavbarButton variant="primary">Sign Up</NavbarButton>
           </div>
         </NavBody>
@@ -47,7 +63,9 @@ const Nav = () => {
         {/* Mobile navbar */}
         <MobileNav className="rounded-lg shadow-lg" >
           <MobileNavHeader >
-            <NavbarLogo />
+            <NavbarLogo className={`${poppins.className} text-xl font-semibold`}>
+              Wearvio
+            </NavbarLogo>
             <MobileNavToggle
               isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -62,7 +80,7 @@ const Nav = () => {
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-black hover:text-gray-600 transition-colors duration-200"
+                className={`relative text-black hover:text-gray-600 transition-colors duration-200 ${outfit.className}`}
               >
                 <span className="block text-lg font-medium">{item.name}</span>
               </a>
@@ -73,7 +91,7 @@ const Nav = () => {
                 variant="secondary"
                 className="w-full"
               >
-                Explore
+                View Cart
               </NavbarButton>
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -89,4 +107,5 @@ const Nav = () => {
     </div>
   );
 };
+
 export default Nav;
