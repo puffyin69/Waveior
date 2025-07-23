@@ -7,6 +7,8 @@ import Checkout from "@/components/Checkout";
 import gsap from "gsap";
 import { ScrollTrigger, ScrollSmoother } from "gsap/all";
 import Aboutus from "@/components/Aboutus";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 export default function Home() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -26,6 +28,7 @@ export default function Home() {
   }, []);
 
   return (
+    <>
     <div id="smooth-wrapper">
       <div className="sticky top-0 z-50">
         <Nav />
@@ -34,9 +37,17 @@ export default function Home() {
         <Hero />
         <Product />
         <Aboutus />
+        <Contact />
+        <Footer />
+        <div className=" h-4">
+          <h1></h1>
+        </div>
       </div>
+      
 
       {/* <Checkout /> */}
     </div>
+    </>
+    
   );
 }

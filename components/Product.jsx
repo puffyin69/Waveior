@@ -1,5 +1,5 @@
 "use client";
-import { CardDemo } from "./ui/card";
+import { Card } from "./ui/card";
 import { Outfit } from "next/font/google";
 // Import issue - commenting out for now
 // import CardDemo from "@/components/cards";
@@ -32,7 +32,7 @@ const Product = () => {
         </h1> 
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 xl:gap-12 place-items-center mx-auto max-w-7xl">
-          <CardDemo
+          <Card
             title="Aesthetic Top"
             description="This black top features a clean, simple silhouette. Think a perfectly draped, matte black fabric that subtly flatters, perhaps with a high neck or a single, interesting detail."
             Actualimg={
@@ -42,7 +42,7 @@ const Product = () => {
               "https://images.unsplash.com/photo-1541519481457-763224276691?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             }
           />
-          <CardDemo
+          <Card
             title="Earth-Toned Utility Jacket "
             description="Crafted for the modern explorer. This earth-toned utility jacket combines rugged design with everyday wearability."
             Actualimg={
@@ -52,7 +52,7 @@ const Product = () => {
               "https://images.unsplash.com/photo-1606913852449-8ebf553565cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFzaGlvbiUyMG1hbnxlbnwwfHwwfHx8MA%3D%3D"
             }
           />
-          <CardDemo
+          <Card
             title="Monochrome Edge – The Statement Look"
             description="Bold. Effortless. Unapologetic.
               This look fuses clean lines with strong attitude.

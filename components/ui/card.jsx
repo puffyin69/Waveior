@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 
-export function CardDemo({ title, description, Actualimg, overlayimg }) {
+export function Card({ title, description, Actualimg, overlayimg }) {
   return (
     <div className="max-w-xs w-full">
       <div
