@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Outfit, Poppins } from "next/font/google";
-import { useSession, signIn, signOut } from "next-auth/react";
 import {
   Navbar,
   NavBody,
@@ -35,50 +34,6 @@ const Nav = () => {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [hasMounted, setHasMounted] = useState(false); // ✅ Fix hydration
-  
-  // Get session data
-  const { data: session, status } = useSession();
-
-  // ✅ Fix hydration mismatch
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  const handleSignIn = async () => {
-    await signIn("google", { 
-      callbackUrl: "http://localhost:3000" 
-    });
-  };
-
-  const handleSignOut = async () => {
-    await signOut({ 
-      callbackUrl: "http://localhost:3000" 
-    });
-  };
-
-  // ✅ Prevent hydration issues
-  if (!hasMounted) {
-    return (
-      <div className="relative w-full">
-        <Navbar>
-          <NavBody className="hidden lg:flex justify-between items-center w-full">
-            <NavbarLogo className={`${poppins.className} text-xl font-semibold`}>
-              Wearvio
-            </NavbarLogo>
-            <div className="flex items-center">
-              <NavItems items={navItems} className={`text-sm ${outfit.className}`} />
-            </div>
-            <div className="flex items-center gap-4">
-              <Image src="/cart.png" alt="cart" width={22} height={22} />
-              {/* Show consistent loading state */}
-              <div className="w-20 h-9 bg-gray-200 animate-pulse rounded"></div>
-            </div>
-          </NavBody>
-        </Navbar>
-      </div>
-    );
-  }
 
   return (
     <div className="relative w-full">
@@ -92,40 +47,12 @@ const Nav = () => {
             <NavItems items={navItems} className={`text-sm ${outfit.className}`} />
           </div>
           
-          {/* Auth section */}
+          {/* Navigation section */}
           <div className="flex items-center gap-4">
             <Image src="/cart.png" alt="cart" width={22} height={22} />
-            
-            {/* Show different content based on login status */}
-            {status === "loading" ? (
-              <div className="w-20 h-9 bg-gray-200 animate-pulse rounded"></div>
-            ) : session ? (
-              <div className="flex items-center gap-3">
-                {session.user.image && (
-                  <Image 
-                    src={session.user.image} 
-                    alt="Profile" 
-                    width={32} 
-                    height={32}
-                    className="rounded-full"
-                  />
-                )}
-                <span className="text-sm">Hi, {session.user.name?.split(' ')[0]}</span>
-                <NavbarButton 
-                  onClick={handleSignOut}
-                  variant="secondary"
-                >
-                  Sign Out
-                </NavbarButton>
-              </div>
-            ) : (
-              <NavbarButton 
-                onClick={handleSignIn}
-                variant="primary"
-              >
-                Sign In
-              </NavbarButton>
-            )}
+            <NavbarButton variant="primary">
+              Shop Now
+            </NavbarButton>
           </div>
         </NavBody>
 
@@ -156,7 +83,7 @@ const Nav = () => {
               </a>
             ))}
             
-            {/* Mobile auth section */}
+            {/* Mobile navigation section */}
             <div className="flex w-full flex-col gap-4 mt-6">
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -166,29 +93,13 @@ const Nav = () => {
                 View Cart
               </NavbarButton>
               
-              {session ? (
-                <NavbarButton
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    handleSignOut();
-                  }}
-                  variant="primary"
-                  className="w-full"
-                >
-                  Sign Out
-                </NavbarButton>
-              ) : (
-                <NavbarButton
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    handleSignIn();
-                  }}
-                  variant="primary"
-                  className="w-full"
-                >
-                  Sign In
-                </NavbarButton>
-              )}
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="primary"
+                className="w-full"
+              >
+                Shop Now
+              </NavbarButton>
             </div>
           </MobileNavMenu>
         </MobileNav>
