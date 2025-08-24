@@ -5,6 +5,10 @@ const cartSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    items: [{                                    
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CartItem'
+    }],
     totalAmount: {
         type: Number,
         default: 0,

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Star, Heart, Truck, Shield, RotateCcw } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 
 // Utility function for class names
 const cn = (...classes) => {
