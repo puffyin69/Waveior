@@ -49,9 +49,9 @@ const Hero = () => {
 
       <div className="container mx-auto px-6 md:px-8 lg:px-12 py-12 relative z-10">
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16 lg:gap-20">
-          {/* LEFT SIDE: Text Content */}
+         
           <div className="flex-1 space-y-8">
-            {/* Keep your existing text animation structure */}
+           
             <div className="flex flex-col gap-6">
               <h1
                 className={`text-5xl md:text-6xl lg:text-7xl max-w-2xl tracking-tight font-bold text-gray-900 ${outfit.className}`}

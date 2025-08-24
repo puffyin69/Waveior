@@ -3,12 +3,15 @@ import Nav from "@/components/nav";
 import { useEffect } from "react";
 import Hero from "@/components/Hero";
 import Product from "@/components/Product";
-import Checkout from "@/components/Checkout";
+
 import gsap from "gsap";
 import { ScrollTrigger, ScrollSmoother } from "gsap/all";
 import Aboutus from "@/components/Aboutus";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+
+
+
 export default function Home() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -26,6 +29,9 @@ export default function Home() {
       if (smoother) smoother.kill();
     };
   }, []);
+
+
+
 
   return (
     <>

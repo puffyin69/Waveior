@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { fallbackModeToFallbackField } from 'next/dist/lib/fallback';
+
 const orderSchema = new mongoose.Schema({
     orderNumber : {
         type:String,

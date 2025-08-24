@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Rating from "@models/rating.js"; 
+
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
         trim: true
     },
     price: {
-        type: Number,  // ✅ Fixed: was "number"
+        type: Number,
         required: true,
         min: 0,
         validate: {
@@ -31,27 +31,26 @@ const productSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: function(v) {
-                return /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp))$/.test(v);
+                // ✅ Much more flexible validation - accepts any HTTPS URL
+                return /^https?:\/\/.+/.test(v);
             },
-            message: "Invalid image URL"
+            message: "Image must be a valid URL starting with http:// or https://"
         }
     },
     category: {
         type: String,
         required: true,
-        enum: ["Clothing", "Daily Essentials", "Men's Wear", "Women's Wear"], 
+        enum: ["Clothing", "Daily Essentials", "Men's Wear", "Women's Wear", "Night Dress"], 
         trim: true
     },
     rating: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Rating",
-        required: true
-    }
+        required: false // ✅ Changed from true to false
+    },
 }, {
     timestamps: true
 });
 
-// Create the model
 const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
-
 export default Product;
