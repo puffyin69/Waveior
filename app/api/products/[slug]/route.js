@@ -8,7 +8,8 @@ import { NextResponse } from 'next/server';
 export async function GET(request,{params}){
     try{
         await connectDB();
-    const {slug} = params;
+    const resolvedParams = await params;
+    const {slug} = resolvedParams;
     const product = await Product.findOne({slug:slug});
     if(!product){
         return NextResponse.json({
